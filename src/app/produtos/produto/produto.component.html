@@ -1,0 +1,32 @@
+<form class="emp-form" #produtoForm="ngForm" (ngsubmit)="onSubmit(produtoForm)">
+<div class="form-row">  
+  <div class="form-group col-md-6">
+    <input class="form-control" name="dta_Cadastro" #dta_Cadastro="ngModel" [(ngModel)]="produtoService.selectedProduto.dta_Cadastro" placeholder="Data de Cadastro">
+    <input type="hidden" class="form-control" name="cod_Produto" #cod_Produto="ngModel" [(ngModel)]="produtoService.selectedProduto.cod_Produto" placeholder="Código do Produto">
+  </div>
+  <div class="form-group col-md-6">
+    <input class="form-control" name="qtd_EstoqueMinimo" #qtd_EstoqueMinimo="ngModel" [(ngModel)]="produtoService.selectedProduto.qtd_EstoqueMinimo" placeholder="Estoque Minimo">
+  </div>
+</div>
+<div class="form-group">
+  <input class="form-control" name="nom_Produto" #nom_Produto="ngModel" [(ngModel)]="produtoService.selectedProduto.nom_Produto" placeholder="Nome do Produto" required>
+  <div class="validation-error" *ngIf="nom_Produto.invalid && nom_Produto.touched">Nome é obrigatório</div>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+  <input class="form-control" name="vlr_Compra" #vlr_Compra="ngModel" [(ngModel)]="produtoService.selectedProduto.vlr_Compra" placeholder="Valor Compra" required>
+  <div class="validation-error" *ngIf="vlr_Compra.invalid && vlr_Compra.touched">Valor de compra é obrigatório</div>
+</div>
+<div class="form-group col-md-6">
+  <input class="form-control" name="vlr_Venda" #vlr_Venda="ngModel" [(ngModel)]="produtoService.selectedProduto.vlr_Venda" placeholder="Valor Venda">
+</div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-8">
+    <button [disabled]="!produtoForm.valid" type="submit" (click)="onSubmit(produtoForm)" class="btn btn-lg btn-block btn-info">Salvar</button>
+  </div>
+  <div class="form-group col-md-4">
+    <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(produtoForm)">Reset</button>
+  </div>
+</div>
+</form>
