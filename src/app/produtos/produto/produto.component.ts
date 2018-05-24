@@ -29,11 +29,20 @@ export class ProdutoComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    if(form.value.cod_Produto == null){
     this.produtoService.postProduto(form.value)
       .subscribe(data =>{
       this.resetForm(form);
-      this.toastr.success('Cadastrado com Sucesso!','Cadastro de Produtos')
+      this.produtoService.getListaProdutos();
+      this.toastr.success('Cadastro efetuado com Sucesso!','Cadastro de Produtos')
     })
+  }else{
+    this.produtoService.putProduto(form.value.cod_Produto, form.value)
+      .subscribe(data =>{
+      this.resetForm(form);
+      this.produtoService.getListaProdutos();
+      this.toastr.info('Atualizado com Sucesso!','Cadastro de Produtos')
+      })
+    }
   }
-
 }

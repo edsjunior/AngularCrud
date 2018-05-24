@@ -1,10 +1,19 @@
 <table class="table table-sm table-hover">
+  <tr>
+    <th>Produto</th>
+    <th>$ Compra</th>
+    <th>$ Venda</th>
+    <th>Data</th>
+    <th></th>
+  </tr>
   <tr *ngFor="let produto of produtoService.listaProduto">
     <td>{{produto.cod_Produto}} - {{produto.nom_Produto}}</td>
+    <td>{{produto.vlr_Compra}}</td>
     <td>{{produto.vlr_Venda}}</td>
+    <td>{{produto.dta_Cadastro}}</td>
     <td>
       <a class="btn" (click)="Editar(produto)">Editar</a>
-      <a class="btn">Excluir</a>
+      <a class="btn" (click)="Deletar(produto.cod_Produto)">Excluir</a>
     </td>
   </tr>
 </table>

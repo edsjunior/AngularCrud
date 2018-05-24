@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { ProdutoComponent } from './produtos/produto/produto.component';
 import { ProdutoListaComponent } from './produtos/produto-lista/produto-lista.component';
+import { BrowserAnimationsModule,NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
@@ -20,6 +21,8 @@ import { ToastrModule } from "ngx-toastr";
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [],

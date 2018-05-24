@@ -14,21 +14,32 @@ export class ProdutoService {
   constructor( private http: Http) { }
 
   postProduto(prod: Produto){
-    alert('Testee')
     let body = JSON.stringify(prod);
-    alert(prod)
     const headerOptions = new Headers({'Content-type': 'application/json'});
     const requestOptions = new RequestOptions({method: RequestMethod.Post, headers: headerOptions})
-    return this.http.post("http://localhost:15292/api/Produto",body, requestOptions).map(x => x.json())
+    return this.http.post("https://crudangularapi.azurewebsites.net/api/Produto",body, requestOptions).map(x => x.json())
+
+  }
+
+  putProduto(codProduto, prod){
+    let body = JSON.stringify(prod);
+    const headerOptions = new Headers({'Content-type': 'application/json'});
+    const requestOptions = new RequestOptions({method: RequestMethod.Put, headers: headerOptions})
+    return this.http.put("https://crudangularapi.azurewebsites.net/api/Produto/" + codProduto,
+    body, requestOptions).map(x => x.json())
 
   }
 
   getListaProdutos(){
-    this.http.get("http://localhost:15292/api/Produto")
+    this.http.get("https://crudangularapi.azurewebsites.net/api/Produto")
       .map((data: Response)=>{
         return data.json() as Produto[];
       }).toPromise().then(x =>{
         this.listaProduto = x;
       })
+  }
+
+  deleteProduto(codProduto: number){
+    return this.http.delete("https://crudangularapi.azurewebsites.net/api/Produto/" + codProduto).map(resp => resp.json())
   }
 }
